@@ -13,7 +13,7 @@
     <h2>Example 1 (\(\mathbb{E}[\max\{X_1,X_2\}]\neq\max\{\mathbb{E}(X_1),\mathbb{E}(X_2)\}\)).</h2>
 Consider support \(x\in[0,1]\), \(X_1\) has density \(f(x)=2x\), and \(X_2\) has density \(g(x)=1\), what's more, we assume \(X_1,X_2\) are independent. The density function of \(\max\{X_1,X_2\}\) can be derived as following: for \(Y=\max\{X_1,X_2\}\),
 $$
-P(Y\leq x)=P(X_1\leq x,X_2\leq x)=P(X_1\leq x)P(X_2\leq x)=x^3.
+P(Y\leq x)=P(X_1\leq x,X_2\leq x)=P(X_1\leq x)\cdotP(X_2\leq x)=x^3.
 $$
 Hence, the desity function of \(Y\) is \(3x^2\).
 Therefore,
@@ -22,7 +22,7 @@ $$
 $$
 Meanwhile,
 $$
-\mathbb{E}(X_1)\int_1^1x\cdot 2xdx=\frac{2}{3},\quad\mathbb{E}(X_2)=\int_0^1 x\cdot 1dx=\frac{1}{2}.
+\mathbb{E}(X_1)=\int_0^1x\cdot 2xdx=\frac{2}{3},\quad\mathbb{E}(X_2)=\int_0^1 x\cdot 1dx=\frac{1}{2}.
 $$
 </body>
 </html>
