@@ -1,0 +1,158 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{enumitem}
+\setlist[enumerate]{label = (\roman*)}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem{example}{Example}
+
+\usepackage{tikz}
+\usepackage{hyperref}
+
+\newcommand{\summation}[2]{\sum\limits_{#1}^{#2}}
+\newcommand{\limit}[2]{\lim\limits_{#1\to #2}}
+\newcommand{\vep}{\varepsilon}
+
+\begin{document}
+\begin{example}[$\frac{\partial \tilde{\beta}'A\tilde{\beta}}{\partial \tilde{\beta}}=2A\tilde{\beta}$]
+Consider $\tilde{\beta}$ and matrix $A$ as following,
+\[
+ \tilde{\beta}=[\tilde{\beta_1},\tilde{\beta_2},\dots,\tilde{\beta_k}]^{'},
+ A=\begin{bmatrix}
+ a_{11} & a_{12} & \dots & a_{1k} \\
+ a_{21} & a_{22} & \dots & a_{2k} \\
+ \vdots & \dots & \ddots & \vdots \\
+ a_{k1} & a_{k2} & \dots & a_{kk}
+ \end{bmatrix} \forall{i,j}, a_{ij}=a_{ji}
+\]
+Then, $\frac{\partial \tilde{\beta}'A\tilde{\beta}}{\partial \tilde{\beta}}=2A\tilde{\beta}$.
+
+ 
+\begin{proof} 
+Notice that
+\[
+ \tilde{\beta}^{'}A = [\tilde{\beta_1},\tilde{\beta_2},\dots,\tilde{\beta_k}] \times \begin{bmatrix}
+ a_{11} & a_{12} & \dots & a_{1k} \\
+ a_{21} & a_{22} & \dots & a_{2k} \\
+ \vdots & \dots & \ddots & \vdots \\
+ a_{k1} & a_{k2} & \dots & a_{kk}
+ \end{bmatrix} = \begin{bmatrix}
+ \sum\limits_{i=1}^k \tilde{\beta_i}a_{i1}, \sum\limits_{i=1}^k \tilde{\beta_i}a_{i2},\dots, \sum\limits_{i=1}^k \tilde{\beta_i}a_{ik}
+ \end{bmatrix} 
+ \]
+Hence,
+\begin{align*}
+ \tilde{\beta}^{'}A\tilde{\beta} &= \begin{bmatrix}
+ \sum\limits_{i=1}^k \tilde{\beta_i}a_{i1}, \sum\limits_{i=1}^k \tilde{\beta_i}a_{i2},\dots, \sum\limits_{i=1}^k \tilde{\beta_i}a_{ik}
+ \end{bmatrix} \begin{bmatrix}
+ \tilde{\beta_1}\\
+ \tilde{\beta_2}\\
+ \vdots\\
+ \tilde{\beta_k}
+ \end{bmatrix} \\
+ &= (\tilde{\beta_1}^2a_{11}+\tilde{\beta_2}^2a_{22}+\dots+\tilde{\beta_k}^2a_{kk})+(\sum\limits_{i\neq1}^k \tilde{\beta_i}a_{i1})\tilde{\beta_1}+
+ (\sum\limits_{i\neq2}^k \tilde{\beta_i}a_{i2})\tilde{\beta_2}+
+ \dots+(\sum\limits_{i\neq k}^k \tilde{\beta_i}a_{ik})\tilde{\beta_k}
+ \end{align*}
+ Therefore, 
+ \begin{align*}
+ \frac{\partial{\tilde{\beta}^{'}A\tilde{\beta}}}{\partial{\tilde{\beta_j}}} &=
+ 2\tilde{\beta_j}a_{jj}+\tilde{\beta_1}a_{j1}+\tilde{\beta_2}a_{j2}+\dots+\tilde{\beta}_{j-1}a_{j,j-1}+
+ \sum\limits_{i\neq j}^k \tilde{\beta_i}a_{ij}+\dots+\tilde{\beta_k}a_{jk} \\
+  &= 2\tilde{\beta_j}a_{jj}+\tilde{\beta_1}a_{j1}+\tilde{\beta_2}a_{j2}+\dots+\tilde{\beta}_{j-1}a_{j,j-1}+
+ \sum\limits_{i\neq j}^k \tilde{\beta_i}a_{ji}+\dots+\tilde{\beta_k}a_{jk} \\
+ &= 2(\tilde{\beta_1}a_{j1}+\tilde{\beta_2}a_{j2}+\dots+\tilde{\beta_k}a_{jk})=2[a_{j1},a_{j2},\dots,a_{jk}]
+ \begin{bmatrix}
+ \tilde{\beta_1}\\
+ \tilde{\beta_2}\\
+ \vdots\\
+ \tilde{\beta_k}
+ \end{bmatrix}
+ \end{align*}
+\end{proof}
+\end{example}
+
+\begin{example}[$\sigma^{-2}(n-K)s_{UB}^2\sim\chi^2(n-K)$]
+To prove: 
+\[
+\sigma^{-2}(n-K)s_{UB}^2\sim \chi^2(n-K)
+\]
+we need to following two facts:
+\begin{enumerate}
+\item If random vector \textbf{x} $\sim N(\textbf{0},\textbf{I}_n)$ and $\bold{A}$ is idempotent matrix, then $\bold{x'Ax}\sim \chi^2$(rank($\bold{A}$)), where rank($\bold{A}$) is the degree of freedom of this chi-square distribution.
+\item For an idempotent matrix $M$, we have: rank($M$) = trace($M$).
+\end{enumerate}
+\begin{proof}
+Assume we have known these two facts, let's begin to prove it:
+\begin{align*}
+\sigma^{-2}(n-K)s_{UB}^2 &= \frac{\sum\limits_{i=1}^n (\hat{\vep_i}^2)}{\sigma^2}\\
+& = \frac{\hat{\vep}'\cdot \hat{\vep}}{\sigma^2} \\
+& = \frac{(Y-\hat{Y})'(Y-\hat{Y})}{\sigma^2} \\
+&= \frac{(Y-X\hat{\beta})'(Y-X\hat{\beta})}{\sigma^2}\\
+&= \frac{(Y-X(X'X)^{-1}X'Y)'(Y-X(X'X)^{-1}X'Y)}{\sigma^2} \\
+&= \frac{[(I_n-X(X'X)^{-1}X')Y]'[(I_n-X(X'X)^{-1}X')Y]}{\sigma^2} 
+\end{align*}
+Recall that
+\[
+M = I_n-X(X'X)^{-1}X' = I_n - P. 
+\]
+Hence, 
+\begin{align*}
+\sigma^{-2}(n-K)s_{UB}^2 &=\frac{(MY)'(MY)}{\sigma^2}\\
+&= \frac{[M(X\beta +\vep)]'[M(X\beta +\vep)]}{\sigma^2}\\
+&=\frac{[(I_n-P)X\beta + M\vep]'[(I_n-P)X\beta + M\vep]}{\sigma^2}
+\end{align*}
+Notice that: 
+\[
+(I_n-P)X\beta + M\vep = (I_n - X(X'X)^{-1}X')X\beta + M\vep=M\vep
+\]
+Hence, 
+\[
+\sigma^{-2}(n-K)s_{UB}^2 =\frac{(M\vep)'(M\vep)}{\sigma^2}
+\]
+$M$ is idempotent implies 
+\[
+\sigma^{-2}(n-K)s_{UB}^2 = \frac{\vep'M\vep}{\sigma^2} = \frac{\vep'}{\sigma}M\frac{\vep}{\sigma}
+\]
+By fact (i), we can assert that: $\sigma^{-2}(n-K)s_{UB}^2 \sim \chi^2$(rank($M$)), now we need to show: rank($M$) = $n-K$. By fact (ii), we need to show: trace($M$) = $n-K$.
+\begin{align*}
+trace(M) &= trace(I_n - X(X'X)^{-1}X')\\
+&= trace(I_n) - trace(X(X'X)^{-1}X')
+\end{align*}
+As $trace(AB) = trace(BA)$, hence
+\begin{align*}
+trace(M)&= n-trace((X'X)^{-1}X'X)\\
+&=n-K
+\end{align*}
+\end{proof}
+
+\end{example}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

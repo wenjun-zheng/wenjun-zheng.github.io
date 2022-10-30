@@ -1,0 +1,118 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{bbold}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\theoremstyle{definition}
+
+\usepackage{amssymb}
+\usepackage{enumitem}
+\newtheorem{example}{Example}
+\newtheorem{theorem}{Theorem}
+\title{Note on Utility Functions of Lexicographic Preferences}
+\date{}
+\author{Wenjun Zheng}
+
+\newcommand{\summation}[2]{\sum_{#1}^{#2}}
+\begin{document}
+\maketitle
+\begin{abstract}
+In this note, we provide the general condition for the existence of lexicographic preferences. 
+\end{abstract}
+
+\textbf{Keywords: }lexicographic preferences; utility representation
+
+\section{Introduction}
+Lexicographic preferences derive from reality. A typical example is Chinese College Application. Student should first choose the order of universities and then their desiring majors. We may know that lexicographic preferences don't have utility representation, however this argument de facto suffers fallacies. Consider the following two examples.
+\begin{example}[Lexicographic preference on $\mathbb{N}\times\mathbb{R}$]
+Consider lexicographic preference on $\mathbb{N}\times\mathbb{R}$, then it has utility function
+\[
+u(x_1,y_1)=x_1+\frac{\arctan(y_1)}{\pi}.
+\]
+\begin{proof}
+Consider pairs $(x_1,y_1)$ and $(x_2,y_2)$ with $x_2>x_1$. Then,
+\begin{align*}
+u(x_2,y_2)-u(x_1,y_1)&=x_2+\arctan(y_2)-x_1-\arctan(y_1)\\
+&\geq x_2-\frac{\frac{\pi}{2}}{\pi}-x_1-\frac{\frac{\pi}{2}}{\pi}\\
+&=x_2-x_1-1\geq 0.
+\end{align*}
+\end{proof}
+\end{example}
+
+\begin{example}[Lexicographic preference on more fancy setting]
+Consider lexicographic preference on $([0,1]\cap\mathbb{Q})\times [0,1]$, then for all $(x,y)\in([0,1]\cap\mathbb{Q})\times [0,1]$ it has utility function
+\[
+u(x,y) = \summation{k=1}{l-1}2^{-k}+\frac{2^{-l}}{2}y,\text{ where }x^l=x.
+\]
+where $[0,1]\times\mathbb{Q}=\{x^1,x^2,\dots\}$.
+\begin{proof}
+We discuss it into three cases.
+\begin{enumerate}[label = (\roman*)]
+\item if $(x_1,y_1)=(x_2,y_2)$, then $u(x_1,y_1) = u(x_2,y_2)$;
+\item if $x_1>x_2$: let $x^{l_1}=x_1$ and $x^{l_2}=x_2$. 
+\begin{align*}
+u(x_1,y_1)\geq u(x_1,0)&\geq \summation{k=1}{l_2}2^{-k}\\
+u(x_2,y_2)\leq u(x_2,1)&=\summation{k=1}{l_2-1}2^{-k}+2^{-l_2-1}
+\end{align*}
+clearly, $u(x_1,y_1)\geq u(x_2,y_2)$.
+\item if $x_1=x_2$ and $y_1>y_2$, the conclusion is obvious.
+\end{enumerate}
+\end{proof}
+\end{example}
+
+These two examples potentially demonstrate that for $A\subset\mathbb{R}$ and $B\subset\mathbb{R}$, lexicographic preferences on $A\times B$ might admit a utility representation as long as $A$ is countable. The next theorem pins down our conjecture.
+
+\begin{theorem}
+Consider $X_1,\dots,X_n\subset\mathbb{R}$ and every $X_i$ is infinite. The lexicographic preferences on $X_1\times\dots\times X_n$ admit utility representation if and only if $X_1,\dots,X_{n-1}$ are countable. 
+\end{theorem}
+\begin{proof}
+We first prove the ``if" part, then ``only if" part.
+\begin{enumerate}[label = (\roman*)]
+\item ``$\leftarrow$":
+\item ``$\rightarrow$": assume $\succsim$ admits a utility representation, we would like to prove by contradiction. Without loss of generality, assume $X_i\in\{X_1,\dots,X_{n-1}\}$ is uncountable. Then, consider 
+\[
+(\bar{x}_1,\dots,\bar{x}_i,a,\dots,\bar{x}_n),\; (\bar{x}_1,\dots,\bar{x}_i,b,\dots,\bar{x}_n), \quad a,b\in X_{i+1}\text{ and }a>b.
+\]
+Hence,
+\[
+u(\bar{x}_1,\dots,\bar{x}_i,a,\dots,\bar{x}_n) > u(\bar{x}_1,\dots,\bar{x}_i,b,\dots,\bar{x}_n).
+\]
+Pick one rational number from interval 
+\[
+q(\bar{x}_i)\in[u(\bar{x}_1,\dots,\bar{x}_i,b,\dots,\bar{x}_n), u(\bar{x}_1,\dots,\bar{x}_i,a,\dots,\bar{x}_n)]
+\]
+Further notice that for $\bar{x}_i'>\bar{x}_i$, we have
+\begin{align*}
+q(\bar{x}_i')&\geq u(\bar{x}_1,\dots,\bar{x}_i',b,\dots,\bar{x}_n)\\
+&> u(\bar{x}_1,\dots,\bar{x}_i,a,\dots,\bar{x}_n)\\
+&\geq q(\bar{x}_i).
+\end{align*}
+Consider a mapping from $X_i$ to the set of all $q(x_i)$, where $x_i\in X_i$. It is injection by above argument and surjection by our construction of codomain. Hence, we form a bijection from uncountable set to a countable set\footnote{Infinite subset of a countable set is still countable.}, contradiction yields.
+\end{enumerate}
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
