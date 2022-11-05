@@ -1,0 +1,161 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{hyperref}
+\usepackage[scale = 0.75]{geometry}
+\usepackage{bbold}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\theoremstyle{definition}
+
+\usepackage{amssymb}
+\usepackage{enumitem}
+\newtheorem{example}{Example}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}{Definition}
+\newtheorem{intuition}{Intuition}
+\title{A Note on Utility Representations of Lexicographic Preferences}
+\date{}
+\author{Wenjun Zheng}
+
+\newcommand{\summation}[2]{\sum_{#1}^{#2}}
+\newcommand{\minus}{\textbackslash}
+\begin{document}
+\maketitle
+\begin{abstract}
+In this note, we provide the condition for lexicographic preferences to admit utility representations. To be specific, for $X_i\subset\mathbb{R}$, the lexicographic preferences admit utility representation on $X_1\times X_2\dots\times X_n$ if and only if $X_1,\dots,X_{n-1}$ are countable. 
+\end{abstract}
+
+\textbf{Keywords: }lexicographic preferences; utility representation
+
+\section{Introduction}
+Lexicographic preferences derive from reality. A typical example is the Chinese College Application. The student should first choose the order of universities and then decide their desiring majors. Formally, we give the definition of lexicographic preferences.
+
+\begin{definition}[Lexicographic preference]
+Consider a binary relationship $\succsim$ on $X_1\times\dots\times X_n$ where $X_i\subset\mathbb{R}$ for $i=1,\dots,n$. Denote $X=X_1\times\dots\times X_n$. $\succsim$ is a lexicographic preference if for $x,y\in X$, 
+\begin{align*}
+x\sim y,&\text{ if }x=y\\
+x\succ y,&\text{ if there is $i\in\{1,\dots,n\}$ such that }x_j=y_j\text{ for all }j<i\text{ and }x_i>y_i
+\end{align*}
+\end{definition}
+
+The following two examples illustrate utility representations on restricted domains.
+
+\begin{example}[Lexicographic preference on $\mathbb{N}\times\mathbb{R}$]
+Consider lexicographic preference on $\mathbb{N}\times\mathbb{R}$, then it has utility function
+\[
+u(x_1,y_1)=x_1+\frac{\arctan(y_1)}{\pi}.
+\]
+\begin{proof}
+Consider pairs $(x_1,y_1)$ and $(x_2,y_2)$ with $x_2>x_1$. Then,
+\begin{align*}
+u(x_2,y_2)-u(x_1,y_1)&=x_2+\arctan(y_2)-x_1-\arctan(y_1)\\
+&\geq x_2-\frac{\frac{\pi}{2}}{\pi}-x_1-\frac{\frac{\pi}{2}}{\pi}\\
+&=x_2-x_1-1\geq 0.
+\end{align*}
+\end{proof}
+\end{example}
+
+\begin{example}[Lexicographic preference on more fancy setting]
+Consider lexicographic preference on $([0,1]\cap\mathbb{Q})\times [0,1]$, then for all $(x,y)\in([0,1]\cap\mathbb{Q})\times [0,1]$ it has utility function
+\[
+u(x,y) = \summation{k=1}{l-1}2^{-k}+\frac{2^{-l}}{2}y,\text{ where }x^l=x.
+\]
+where $[0,1]\cap\mathbb{Q}=\{x^1,x^2,\dots\}$.
+\begin{proof}
+We discuss it into three cases.
+\begin{enumerate}[label = (\roman*)]
+\item if $(x_1,y_1)=(x_2,y_2)$, then $u(x_1,y_1) = u(x_2,y_2)$;
+\item if $x_1>x_2$: let $x^{l_1}=x_1$ and $x^{l_2}=x_2$. 
+\begin{align*}
+u(x_1,y_1)\geq u(x_1,0)&\geq \summation{k=1}{l_2}2^{-k}\\
+u(x_2,y_2)\leq u(x_2,1)&=\summation{k=1}{l_2-1}2^{-k}+2^{-l_2-1}
+\end{align*}
+clearly, $u(x_1,y_1)\geq u(x_2,y_2)$.
+\item if $x_1=x_2$ and $y_1>y_2$, the conclusion is obvious.
+\end{enumerate}
+\end{proof}
+\end{example}
+
+These two examples potentially indicate that for $A\subset\mathbb{R}$ and $B\subset\mathbb{R}$, lexicographic preferences on $A\times B$ might admit a utility representation if $A$ is countable. The next theorem verifies our conjecture.
+
+\section{Result and Intuition}
+\begin{theorem}
+Consider $X_1,\dots,X_n\subset\mathbb{R}$ and each $X_i$ is infinite. Lexicographic preferences on $X_1\times\dots\times X_n$ admit utility representation if and only if $X_1,\dots,X_{n-1}$ are countable. 
+\end{theorem}
+\begin{proof}
+First, we prove ``only if", then we prove ``if".
+\begin{enumerate}[label = (\roman*)]
+\item ``$\rightarrow$": proof by contradiction and assume $\succsim$ admits a utility representation. Without loss of generality, suppose $X_i\in\{X_1,\dots,X_{n-1}\}$ is uncountable. Then, consider 
+\[
+(\bar{x}_1,\dots,\bar{x}_i,a,\dots,\bar{x}_n),\; (\bar{x}_1,\dots,\bar{x}_i,b,\dots,\bar{x}_n), \quad a,b\in X_{i+1}\text{ and }a>b.
+\]
+Hence,
+\[
+u(\bar{x}_1,\dots,\bar{x}_i,a,\dots,\bar{x}_n) > u(\bar{x}_1,\dots,\bar{x}_i,b,\dots,\bar{x}_n).
+\]
+Pick one rational number from interval 
+\[
+q(\bar{x}_i)\in[u(\bar{x}_1,\dots,\bar{x}_i,b,\dots,\bar{x}_n), u(\bar{x}_1,\dots,\bar{x}_i,a,\dots,\bar{x}_n)]
+\]
+Further notice that for $\bar{x}_i'>\bar{x}_i$, we have
+\begin{align*}
+q(\bar{x}_i')&\geq u(\bar{x}_1,\dots,\bar{x}_i',b,\dots,\bar{x}_n)\\
+&> u(\bar{x}_1,\dots,\bar{x}_i,a,\dots,\bar{x}_n)\\
+&\geq q(\bar{x}_i).
+\end{align*}
+Consider a mapping from $X_i$ to the set of all $q(x_i)$, where $x_i\in X_i$. It is injection by above argument and surjection by our construction of codomain. Hence, we form a bijection from uncountable set to a countable set\footnote{Infinite subset of a countable set is still countable.}, contradiction yields.
+\item ``$\leftarrow$": without loss of generality, we can assume $X_n=\mathbb{R}$. The reason is following: if we can find utility representation on $X_1\times\dots\times\mathbb{R}$, then this utility representation also preserves order on $X_1\times\dots\times X_n$, when $X_n\subset\mathbb{R}$. Let
+\[
+X=X_1\times\dots\times X_{n-1}\times\mathbb{R}.
+\]
+
+Consider set $S=X_1\times\dots\times X_{n-1}\times\mathbb{Q}$. $S$ is countable and  we would like to show $S$ is separable set for $\succsim$. Suppose $x,y\in X\minus S$ and $x\succ y$. There exists $i\in\{1,\dots,n\}$ such that 
+\[
+x_j=y_j\text{ for all }j<i\text{ and }x_i>y_i.
+\]
+We can find out $z\in S$ such that $x\succ z\succ y$ by following way:
+\begin{enumerate}
+\item If there is $z_i\in X_i$ such that $x_i>z_i>y_i$, then we are done. Let $z_j=x_j=y_j$ for all $j<i$ and $z_i=z_i$, and for $k>i$ the value of $z_k$ does not matter;
+\item If there is not $z_i\in X_i$ such that $x_i>z_i>y_i$\footnote{This happens when $X_i$ has gap.}, let $z_j=y_j$ for all $j\leq i$. 
+\begin{enumerate}
+\item Now for $z_{i+1}$, if there is $z_{i+1}\in X_{i+1}$ such that $z_{i+1}>y_{i+1}$, we are done. 
+\item If not, let $z_{i+1}=y_{i+1}$.
+\item Continue above process until we find some $z_{k}>y_k$ for $k> i+1$.Finally we come to find an element in $z_n\in X_n=\mathbb{Q}$ such that $z_n>y_n$. Such $z_n$'s existence can be guaranteed since we can always find $z_n\in (y_n,y_n+1)\cap\mathbb{Q}$.
+\end{enumerate}
+\end{enumerate}
+In this way, we construct $z$ to separate between $x$ and $y$. Finally, since $\succsim$ on $X_1\times\dots\times\mathbb{R}$ is complete, transitive, and separable, it admits a utility representation. This utility representation preserves order on $X_1\times\dots\times X_n$.
+\end{enumerate}
+\end{proof}
+
+\begin{intuition}
+Think of $\succsim$ on $\mathbb{N}\times\mathbb{R}$. For any pairs $(x_1,x_2)$ and $(y_1,y_2)$, we can assign a greater weight to the first coordinate and a less weight to the second coordinate. Notice that the least gap between $x_1,y_1$ is $1$, hence let the maximal gap between $x_2,y_2$ less than $1$ will do the trick. Then, an ideal expression will be
+\[
+u(x_1,x_2)=x_1+\frac{\arctan(x_2)}{\pi}.
+\]
+\end{intuition}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
